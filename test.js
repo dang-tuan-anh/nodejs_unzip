@@ -5,5 +5,7 @@ const input = fs.readFileSync('input.txt', {encoding:'utf-8'});
 
 const buffer = Buffer.from(input, 'base64');
 const out = zlib.unzipSync(buffer);
-console.log(out.toString());
-fs.writeFileSync('output.txt', out.toString());
+const format = require('xml-formatter');
+const formattedXml = format(out.toString());
+console.log(formattedXml);
+fs.writeFileSync('output.xml', formattedXml);
